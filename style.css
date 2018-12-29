@@ -67,6 +67,11 @@ hr {
    white-space: pre-wrap;
 }
 
+.about p.contracted {
+   height: 250px;
+   overflow: hidden;
+}
+
 .header {
    height: 320px;
 }
@@ -118,4 +123,30 @@ hr {
    .list .list-item {
       flex: 0 0 100%;
    }
+}
+
+button {
+   display: inline-block;
+   margin-bottom: 0;
+   text-align: center;
+   vertical-align: middle;
+   user-select: none;
+   white-space: none;
+   cursor: pointer;
+}
+
+.about button.more {
+   padding: 0;
+   background: transparent;
+   border: 0;
+   color: #008489;
+   font-size: 17px;
+   font-weight: bold;
+}
+
+.about button.more:hover,
+.about button.more:focus,
+.about button.more:active {
+   text-decoration: underline;
+   outline: none;
 }
