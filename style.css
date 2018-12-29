@@ -86,6 +86,12 @@ hr {
    cursor: pointer;
 }
 
+.header .header-img .view-photos {
+   position: absolute;
+   bottom: 20px;
+   left: 20px;
+}
+
 .list {
    display: flex;
    flex-wrap: nowrap;
@@ -128,8 +134,16 @@ hr {
 button {
    display: inline-block;
    margin-bottom: 0;
+   padding: 7px 18px;
+   background: #fff;
+   border-radius: 4px;
+   border: 1px solid #c4c4c4;
+   color: #484848;
    text-align: center;
    vertical-align: middle;
+   font-size: 14px;
+   font-weight: bold;
+   line-height: 1.43;
    user-select: none;
    white-space: none;
    cursor: pointer;
@@ -149,4 +163,53 @@ button {
 .about button.more:active {
    text-decoration: underline;
    outline: none;
+}
+
+#modal {
+   display: none;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 2000;
+   background-color: rgba(0,0,0, 0.85);
+}
+
+#modal.show {
+   display: block;
+}
+
+.modal-content {
+   position: relative;
+   height: 100%;
+   max-width: 105vh;
+   margin: 0 auto;
+   padding-top: 12vh;
+}
+
+.modal-content img {
+   max-width: 100%;
+}
+
+body.modal-open {
+   position: fixed;
+   overflow: hidden;
+}
+
+.modal-close {
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: auto;
+   height: auto;
+   padding: 0 28px 8px;
+   background: transparent;
+   border: 0;
+   color: #fff;
+   font-size: 4em;
+   font-weight: 100;
+   line-height: 1;
+   outline: none;
+   z-index: 1000;
 }
