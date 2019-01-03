@@ -1,33 +1,38 @@
+import 'core-js/fn/object/assign';
+import Vue from 'vue';
+import sample from './data';
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+var app = new Vue({
+   el: '#app',
+   data: Object.assign(sample, {
+        headerImageStyle: {
+        'background-image': 'url(/images/header.jpg)'
+        },
+        contracted: true,
+        modalOpen: false
+    }),
+   methods: {
+      escapeKeyListener(evt) {
+         if (evt.keyCode === 27 && this.modalOpen) {
+            this.modalOpen = false;
+         }
+      }
+   },
+   watch: {
+      modalOpen() {
+         const className = 'modal-open';
 
-require('./bootstrap');
-
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app'
+         if (this.modalOpen) {
+            document.body.classList.add(className);
+         } else {
+            document.body.classList.remove(className);
+         }
+      }
+   },
+   created() {
+      document.addEventListener('keyup', this.escapeKeyListener);
+   },
+   destroyed() {
+      document.removeEventListener('keyup', this.escapeKeyListener);
+   }
 });
