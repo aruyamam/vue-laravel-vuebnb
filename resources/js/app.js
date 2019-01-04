@@ -1,23 +1,20 @@
 import 'core-js/fn/object/assign';
 import Vue from 'vue';
-import sample from './data';
+import { populaeAmenitiesAndPrices } from './helper';
+
+let model = JSON.parse(window.vuebnb_listing_model);
+model = populaeAmenitiesAndPrices(model);
+console.log(model);
 
 var app = new Vue({
    el: '#app',
-   data: Object.assign(sample, {
-        headerImageStyle: {
-        'background-image': 'url(/images/header.jpg)'
-        },
-        contracted: true,
-        modalOpen: false
-    }),
-   methods: {
-      escapeKeyListener(evt) {
-         if (evt.keyCode === 27 && this.modalOpen) {
-            this.modalOpen = false;
-         }
-      }
-   },
+   data: Object.assign(model, {
+      headerImageStyle: {
+         'background-image': `url(${model.images[0]})`
+      },
+      contracted: true,
+      modalOpen: false
+   }),
    watch: {
       modalOpen() {
          const className = 'modal-open';
@@ -34,5 +31,12 @@ var app = new Vue({
    },
    destroyed() {
       document.removeEventListener('keyup', this.escapeKeyListener);
+   },
+   methods: {
+      escapeKeyListener(evt) {
+         if (evt.keyCode === 27 && this.modalOpen) {
+            this.modalOpen = false;
+         }
+      }
    }
 });
