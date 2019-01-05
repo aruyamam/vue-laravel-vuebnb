@@ -4,7 +4,30 @@ import { populaeAmenitiesAndPrices } from './helper';
 
 let model = JSON.parse(window.vuebnb_listing_model);
 model = populaeAmenitiesAndPrices(model);
-console.log(model);
+
+Vue.component('image-carousel', {
+   data() {
+      return {
+         images: [
+            '/images/1/Image_1.jpg',
+            '/images/1/Image_2.jpg',
+            '/images/1/Image_3.jpg',
+            '/images/1/Image_4.jpg'
+         ],
+         index: 0
+      };
+   },
+   computed: {
+      image() {
+         return this.images[this.index];
+      }
+   },
+   template: `
+      <div class="image-carousel">
+         <img v-bind:src="images[index]" />
+      </div>
+   `
+});
 
 var app = new Vue({
    el: '#app',
