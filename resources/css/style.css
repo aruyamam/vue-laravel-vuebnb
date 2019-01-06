@@ -188,10 +188,6 @@ button {
    padding-top: 12vh;
 }
 
-.image-carousel img {
-   max-width: 100%;
-}
-
 body.modal-open {
    position: fixed;
    overflow: hidden;
@@ -206,10 +202,43 @@ body.modal-open {
    padding: 0 28px 8px;
    background: transparent;
    border: 0;
+   outline: none;
    color: #fff;
    font-size: 4em;
    font-weight: 100;
    line-height: 1;
    outline: none;
    z-index: 1000;
+}
+
+.image-carousel img {
+   max-width: 100%;
+}
+
+.image-carousel {
+   height: 100%;
+   margin-top: -12vh;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.image-carousel .controls {
+   position: absolute;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+}
+
+.carousel-control {
+   padding: 1rem;
+   color: #fff;
+   opacity: 0.85;
+}
+
+@media (min-width: 744px) {
+   .carousel-control {
+      font-size: 3rem;
+   }
 }
