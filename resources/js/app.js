@@ -3,6 +3,7 @@ import Vue from 'vue';
 import { populaeAmenitiesAndPrices } from './helper';
 import ImageCarousel from './components/ImageCarousel.vue';
 import ModalWindow from './components/ModalWindow.vue';
+import HeaderImage from './components/HeaderImage.vue';
 
 let model = JSON.parse(window.vuebnb_listing_model);
 model = populaeAmenitiesAndPrices(model);
@@ -10,6 +11,7 @@ model = populaeAmenitiesAndPrices(model);
 const app = new Vue({
    el: '#app',
    components: {
+      HeaderImage,
       ImageCarousel,
       ModalWindow,
    },
@@ -19,4 +21,9 @@ const app = new Vue({
       },
       contracted: true,
    }),
+   methods: {
+      openModal() {
+         this.$refs.imagemodal.modalOpen = true;
+      },
+   },
 });

@@ -1,6 +1,6 @@
 <template>
    <div id="modal" v-bind:class="{ show: modalOpen }">
-      <button @:click="modalOpen = false" class="modal-close">
+      <button @click="modalOpen = false" class="modal-close">
          &times;
       </button>
       <div class="modal-content">
