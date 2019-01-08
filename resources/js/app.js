@@ -4,6 +4,7 @@ import { populaeAmenitiesAndPrices } from './helper';
 import ImageCarousel from './components/ImageCarousel.vue';
 import ModalWindow from './components/ModalWindow.vue';
 import HeaderImage from './components/HeaderImage.vue';
+import FeatureList from './components/FeatureList.vue';
 
 let model = JSON.parse(window.vuebnb_listing_model);
 model = populaeAmenitiesAndPrices(model);
@@ -14,6 +15,7 @@ const app = new Vue({
       HeaderImage,
       ImageCarousel,
       ModalWindow,
+      FeatureList,
    },
    data: Object.assign(model, {
       headerImageStyle: {

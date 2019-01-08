@@ -1,50 +1,50 @@
-let amenities = new Map();
+const amenities = new Map();
 amenities.set('amenity_wifi', {
    title: 'Wireless Internet',
-   icon: 'fa-wifi'
+   icon: 'fa-wifi',
 });
 amenities.set('amenity_pets_allowed', {
    title: 'Pets Allowed',
-   icon: 'fa-paw'
+   icon: 'fa-paw',
 });
 amenities.set('amenity_tv', {
    title: 'TV',
-   icon: 'fa-television'
+   icon: 'fa-television',
 });
 amenities.set('amenity_kitchen', {
    title: 'Kitchen',
-   icon: 'fa-cutlery'
+   icon: 'fa-cutlery',
 });
 amenities.set('amenity_breakfast', {
    title: 'Breakfast',
-   icon: 'fa-coffee'
+   icon: 'fa-coffee',
 });
 amenities.set('amenity_laptop', {
    title: 'Laptop friendly workspace',
-   icon: 'fa-laptop'
+   icon: 'fa-laptop',
 });
 
-let prices = new Map();
+const prices = new Map();
 prices.set('price_per_night', 'Per night');
 prices.set('price_extra_people', 'Extra people');
 prices.set('price_weekly_discount', 'Weekly discount');
 prices.set('price_monthly_discount', 'Monthly discount');
 
-let populaeAmenitiesAndPrices = function(state) {
+const populaeAmenitiesAndPrices = function (state) {
    if (!state) return {};
 
-   var obj = {
+   const obj = {
       id: state.id,
       title: state.title,
       address: state.address,
       about: state.about,
       amenities: [],
       prices: [],
-      images: []
+      images: [],
    };
 
-   for (let key in state) {
-      let arr = key.split('_');
+   for (const key in state) {
+      const arr = key.split('_');
 
       if (arr[0] === 'amenity' && state[key]) {
          obj.amenities.push(key);
@@ -52,7 +52,7 @@ let populaeAmenitiesAndPrices = function(state) {
       if (arr[0] === 'price') {
          obj.prices.push({
             title: key,
-            value: state[key]
+            value: state[key],
          });
       }
       if (arr[0] === 'image') {
@@ -62,7 +62,7 @@ let populaeAmenitiesAndPrices = function(state) {
 
    obj.amenities = obj.amenities.map(item => amenities.get(item));
 
-   obj.prices = obj.prices.map(item => {
+   obj.prices = obj.prices.map((item) => {
       item.title = prices.get(item.title);
 
       return item;
