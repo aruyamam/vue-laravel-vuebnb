@@ -12,10 +12,6 @@
       </script>
    </head>
    <body>
-      <div id="toolbar">
-         <img src="{{ asset('images/logo.png') }}" alt="logo" class="icon" />
-         <h1>vuebnb</h1>
-      </div>
       <div id="app"></div>
 
       <script src="{{ asset('js/app.js') }}"></script>
