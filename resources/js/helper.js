@@ -72,3 +72,20 @@ const populaeAmenitiesAndPrices = function (state) {
 };
 
 export { populaeAmenitiesAndPrices };
+
+const groupByCountry = (listing) => {
+   if (!listing) return {};
+
+   return listing.reduce((rv, x) => {
+      const key = ['Taiwan', 'Poland', 'Cuba'].find(country => x.address.indexOf(country) > -1);
+
+      if (!rv[key]) {
+         rv[key] = [];
+      }
+      rv[key].push(x);
+
+      return rv;
+   }, {});
+};
+
+export { groupByCountry };

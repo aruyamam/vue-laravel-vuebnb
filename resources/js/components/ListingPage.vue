@@ -34,8 +34,8 @@
 <script>
    import { populaeAmenitiesAndPrices } from '../helper.js';
 
-   let model = JSON.parse(window.vuebnb_listing_model);
-   model = populaeAmenitiesAndPrices(model);
+   let serverData = JSON.parse(window.vuebnb_server_data);   
+   let model = populaeAmenitiesAndPrices(serverData.listing);
 
    import ImageCarousel from './ImageCarousel.vue';
    import ModalWindow from './ModalWindow.vue';
