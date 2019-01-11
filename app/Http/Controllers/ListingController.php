@@ -40,7 +40,7 @@ class ListingController extends Controller
         ]);
         $collection->transform(function ($listing) {
             $listing->thumb = asset(
-                'images' . $listing->id . '/Image_1_thumb.jpg'
+                'images/' . $listing->id . '/Image_1_thumb.jpg'
             );
 
             return $listing;
