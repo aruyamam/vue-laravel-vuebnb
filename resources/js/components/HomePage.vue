@@ -9,18 +9,24 @@
   </div>
 </template>
 <script>
-import { groupByCountry } from '../helper.js';
+import axios from 'axios';
+import { groupByCountry } from '../helper';
 import ListingSummary from './ListingSummary.vue';
 
-const serverData = JSON.parse(window.vuebnb_server_data);
-const listing_groups = groupByCountry(serverData.listing);
+import routeMixin from '../route-mixin.js';
 
 export default {
-   data() {
-      return { listing_groups };
-   },
    components: {
       ListingSummary,
+   },
+   mixins: [routeMixin],
+   data() {
+      return { listing_groups: [] };
+   },
+   methods: {
+      assignData({ listings }) {
+         this.listing_groups = groupByCountry(listings);
+      },
    },
 };
 </script>
