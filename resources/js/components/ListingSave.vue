@@ -1,11 +1,15 @@
 <template>
   <div class="listing-save" @click.stop="toggleSaved()">
-    <i :class="classes"/>
+    <button v-if="button">
+      <i :class="classes"/>
+      {{ message }}
+    </button>
+    <i v-else :class="classes"/>
   </div>
 </template>
 <script>
 export default {
-   props: ['id'],
+   props: ['id', 'button'],
    computed: {
       isListingSaved() {
          return this.$store.state.saved.find(saved => saved === this.id);
@@ -18,6 +22,9 @@ export default {
             'fa-heart': saved,
             'fa-heart-o': !saved,
          };
+      },
+      message() {
+         return this.isListingSaved ? 'Saved' : 'Save';
       },
    },
    methods: {
@@ -41,5 +48,13 @@ export default {
 
 .listing-save .fa-heart {
   color: #ff5a5f;
+}
+
+.listing-save i {
+  padding-right: 4px;
+}
+
+.listing-save button .fa-heart-o {
+  color: #808080;
 }
 </style>
