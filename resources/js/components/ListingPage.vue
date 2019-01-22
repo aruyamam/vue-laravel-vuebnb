@@ -2,10 +2,10 @@
   <div>
     <header-image
       v-if="listing.images[0]"
+      :id="listing.id"
       :image-url="listing.images[0]"
       @header-clicked="openModal"
-      :id="listing.id"
-    ></header-image>
+    />
     <div class="listing-container">
       <div class="heading">
         <h1>{{ listing.title }}</h1>
