@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Listing;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -15,30 +16,8 @@ class ListingController extends Controller
                 'images/' . $listing->id . '/Image_' . $i . '.jpg'
             );
         }
-
+        
         return collect(['listing' => $model]);
-    }
-
-    public function get_listing_api(Listing $listing)
-    {
-        $data = $this->get_listing($listing);
-
-        return response()->json($data);
-    }
-
-    public function add_meta_data($collection, $request)
-    {
-        return $collection->merge([
-            'path' => $request->getPathInfo()
-        ]);
-    }
-
-    public function get_listing_web(Listing $listing, Request $request)
-    {
-        $data = $this->get_listing($listing);
-        $data = $this->add_meta_data($data, $request);
-
-        return view('app', ['data' => $data]);
     }
 
     private function get_listing_summaries()
@@ -50,12 +29,36 @@ class ListingController extends Controller
             $listing->thumb = asset(
                 'images/' . $listing->id . '/Image_1_thumb.jpg'
             );
-
+    
             return $listing;
         });
-
+    
         return collect(['listings' => $collection->toArray()]);
     }
+
+    private function add_meta_data($collection, $request)
+    {
+        return $collection->merge([
+            'path' => $request->getPathInfo(),
+            'auth' => Auth::check()
+        ]);
+    }
+
+    public function get_listing_api(Listing $listing)
+    {
+        $data = $this->get_listing($listing);
+
+        return response()->json($data);
+    }
+
+    public function get_listing_web(Listing $listing, Request $request)
+    {
+        $data = $this->get_listing($listing);
+        $data = $this->add_meta_data($data, $request);
+
+        return view('app', ['data' => $data]);
+    }
+
 
     public function get_home_web(Request $request)
     {
